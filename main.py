@@ -10,14 +10,38 @@ def new_game():
         guess = input("Enter (A, B, C or D): ")
         guess = guess.upper()
         guesses.append(guess)
+
+        correct_guesses += check_answer(questions.get(key), guess)
         question_num += 1
 
+    display_score(correct_guesses, guesses)
 
-def check_answer():
-    pass
+def check_answer(answer, guess):
 
-def display_score():
-    pass
+    if answer == guess:
+        print("Correct!")
+        return 1
+    else:
+        print("Wrong!")
+        return 0
+
+def display_score(correct_guesses, guesses):
+    print("Results!")
+
+
+    print("Answers: ", end = "")
+    for i in questions:
+        print(questions.get(i), end = " ")
+    print()
+
+    print("Guesses: ", end = "")
+    for i in guesses:
+        print(i, end = " ")
+    print()
+
+    score = int((correct_guesses / len(questions)) * 100)
+    print("Your score is " + str(score) + "%")
+
 
 def play_again():
     pass
